@@ -19,15 +19,16 @@ struct ContentView: View {
             ScrollView {
                 LazyVGrid(columns: adaptiveColumns, spacing: 10) {
                     ForEach(vm.pokemonList) { pokemon in
-                        NavigationLink(destination: Text(pokemon.name)
+                        NavigationLink(destination: PokemonDetailView(pokemon: pokemon)
                         ) {
-                            PokemonView(name: pokemon.name.capitalized, pokemonID: vm.getPokemonIndex(pokemon: pokemon))
+                            PokemonView(name: pokemon.name.capitalized, pokemonID: vm.getPokemonIndex(pokemon: pokemon))    
                         }
                     }
                 }
                 .navigationTitle("PokeUI")
             }
         }
+        .environmentObject(vm)
     }
 }
 

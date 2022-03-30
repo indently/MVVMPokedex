@@ -14,5 +14,15 @@ class PokemonManager {
         
         return pokemon
     }
+    
+    func getDetailedPokemon(id: Int, _ completion:@escaping (DetailPokemon) -> ()) {
+        Bundle.main.fetchData(url: "https://pokeapi.co/api/v2/pokemon/\(id)/", model: DetailPokemon.self) { data in
+            completion(data)
+            print(data)
+            
+        } failure: { error in
+            print(error)
+        }
+    }
 }
 

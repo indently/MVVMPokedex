@@ -26,7 +26,6 @@ struct PokemonView: View {
                     .frame(width: dimensions, height: dimensions)
                     
             }
-           
             .background(.thinMaterial)
             .clipShape(Circle())
 
