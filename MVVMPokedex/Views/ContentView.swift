@@ -11,23 +11,25 @@ struct ContentView: View {
     @StateObject var vm = ViewModel()
     
     private let adaptiveColumns = [
-        GridItem(.adaptive(minimum: 170))
+        GridItem(.adaptive(minimum: 150))
     ]
     
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: adaptiveColumns, spacing: 10) {
-                    ForEach(vm.pokemonList) { pokemon in
+                    ForEach(vm.filteredPokemon) { pokemon in
                         NavigationLink(destination: PokemonDetailView(pokemon: pokemon)
                         ) {
                             PokemonView(name: pokemon.name.capitalized, pokemonID: vm.getPokemonIndex(pokemon: pokemon))    
                         }
                     }
                 }
+                .searchable(text: $vm.searchText)
                 .navigationTitle("PokeUI")
             }
         }
+        .animation(.spring(), value: vm.filteredPokemon.count)
         .environmentObject(vm)
     }
 }
