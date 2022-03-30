@@ -21,7 +21,7 @@ struct ContentView: View {
                     ForEach(vm.filteredPokemon) { pokemon in
                         NavigationLink(destination: PokemonDetailView(pokemon: pokemon)
                         ) {
-                            PokemonView(name: pokemon.name.capitalized, pokemonID: vm.getPokemonIndex(pokemon: pokemon))    
+                            PokemonView(pokemon: pokemon)    
                         }
                     }
                 }
@@ -29,7 +29,7 @@ struct ContentView: View {
                 .navigationTitle("PokeUI")
             }
         }
-        .animation(.spring(), value: vm.filteredPokemon.count)
+        .animation(.easeInOut(duration: 0.3), value: vm.filteredPokemon.count)
         .environmentObject(vm)
     }
 }

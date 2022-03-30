@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct PokemonView: View {
-    let name: String
-    let pokemonID: Int
+    @EnvironmentObject var vm: ViewModel
+    let pokemon: Pokemon
     let dimensions: Double = 140
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(pokemonID).png")) { image in
+            AsyncImage(url: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(vm.getPokemonIndex(pokemon: pokemon)).png")) { image in
                 if let image = image {
                     image
                         .resizable()
@@ -29,7 +29,7 @@ struct PokemonView: View {
             .background(.thinMaterial)
             .clipShape(Circle())
 
-            Text("\(name)")
+            Text("\(pokemon.name.capitalized)")
                 .font(.system(size: 20, weight: .medium, design: .rounded))
         }
     }
@@ -37,6 +37,7 @@ struct PokemonView: View {
 
 struct PokemonView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonView(name: "Squirtle", pokemonID: 1)
+        PokemonView(pokemon: Pokemon.samplePokemon)
+            .environmentObject(ViewModel())
     }
 }

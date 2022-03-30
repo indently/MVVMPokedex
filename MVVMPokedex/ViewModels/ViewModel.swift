@@ -15,6 +15,7 @@ class ViewModel: ObservableObject {
     @Published var pokemonDetails: DetailPokemon?
     @Published var searchText = ""
     
+    // Used with searchText to filter pokemon results
     var filteredPokemon: [Pokemon] {
                 return searchText == "" ? pokemonList : pokemonList.filter { $0.name.contains(searchText.lowercased()) }
             }
@@ -45,6 +46,7 @@ class ViewModel: ObservableObject {
         }
     }
     
+    // Formats the Height or the Weight of a given pokemon
     func formatHW(value: Int) -> String {
         let dValue = Double(value)
         let string = String(format: "%.2f", dValue / 10)
