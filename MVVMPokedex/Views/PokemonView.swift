@@ -30,7 +30,9 @@ struct PokemonView: View {
             .clipShape(Circle())
 
             Text("\(pokemon.name.capitalized)")
-                .font(.system(size: 20, weight: .medium, design: .rounded))
+                .font(.system(size: 16, weight: .regular, design: .monospaced))
+                .padding(.bottom, 20)
+
         }
     }
 }

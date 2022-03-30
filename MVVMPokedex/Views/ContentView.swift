@@ -25,11 +25,12 @@ struct ContentView: View {
                         }
                     }
                 }
-                .searchable(text: $vm.searchText)
-                .navigationTitle("PokeUI")
+                .animation(.easeInOut(duration: 0.3), value: vm.filteredPokemon.count)
+                .navigationTitle("PokemonUI")
+                .navigationBarTitleDisplayMode(.inline)
             }
+            .searchable(text: $vm.searchText)
         }
-        .animation(.easeInOut(duration: 0.3), value: vm.filteredPokemon.count)
         .environmentObject(vm)
     }
 }
